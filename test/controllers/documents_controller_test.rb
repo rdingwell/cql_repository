@@ -2,6 +2,11 @@ require 'test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
 
+  setup do
+      dump_database
+      load_fixtures
+  end
+
   test "should be able to retreive a document as cql (default)" do
     assert false
   end
@@ -16,9 +21,9 @@ class DocumentsControllerTest < ActionController::TestCase
 
   test "should be able to create a document" do
     assert false
-  end 
+  end
 
-  test "should be able to update a document" do 
+  test "should be able to update a document" do
     assert false
   end
 
@@ -26,7 +31,7 @@ class DocumentsControllerTest < ActionController::TestCase
     assert false
   end
 
-  test "should not be able to save document that has unresolved dependencies" do 
+  test "should not be able to save document that has unresolved dependencies" do
     assert false
   end
 
@@ -38,7 +43,7 @@ class DocumentsControllerTest < ActionController::TestCase
     assert false
   end
 
-  test "should be able to retrieve full dependency graph" do 
+  test "should be able to retrieve full dependency graph" do
     assert false
   end
 

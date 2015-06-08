@@ -13,8 +13,8 @@ class DocumentTest < ActiveSupport::TestCase
     assert doc.errors.empty?
 
     library,version = Document.parse_library_and_version(cql)
-    doc = Document.new(library: library, 
-                            version: version, data: cql, 
+    doc = Document.new(library: library,
+                            version: version, data: cql,
                              dependencies: Document.parse_dependencies(cql))
     doc.save
 
@@ -24,8 +24,8 @@ class DocumentTest < ActiveSupport::TestCase
   test "should validate precense of library identifier" do
     cql = File.read("test/fixtures/cql_documents/ChlamydiaScreening_CDS.cql")
     library,version = Document.parse_library_and_version(cql)
-    doc = Document.new(library: library, 
-                            version: version, data: cql, 
+    doc = Document.new(library: library,
+                            version: version, data: cql,
                              dependencies: Document.parse_dependencies(cql))
     doc.library = nil
     doc.save
@@ -73,11 +73,11 @@ class DocumentTest < ActiveSupport::TestCase
     doc = Document.find_or_create_by_cql(cql)
     assert doc.errors.empty?
 
-   
+
   end
 
   test "should be able to retrieved dependencies" do
-    
+
     cql = File.read("test/fixtures/cql_documents/ChlamydiaScreening_Common.cql")
     doc1 = Document.find_or_create_by_cql(cql)
     doc1.save
@@ -91,7 +91,7 @@ class DocumentTest < ActiveSupport::TestCase
     assert_equal doc1.id , doc.find_dependencies.first.id, "Dep id should match"
   end
 
-  test "should be able to find dependent documents" do 
+  test "should be able to find dependent documents" do
     cql = File.read("test/fixtures/cql_documents/ChlamydiaScreening_Common.cql")
     doc1 = Document.find_or_create_by_cql(cql)
     doc1.save

@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   def show
   end
 
-  def create 
+  def create
   end
 
   def update
