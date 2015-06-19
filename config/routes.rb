@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :documents
+  namespace :api do
+    resources :documents
+    get 'documents/:library/:version' => 'documents#show'
+    post 'documents/:library/:version' => 'documents#update'
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

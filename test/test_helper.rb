@@ -15,9 +15,7 @@ class ActiveSupport::TestCase
       cql = File.read(cql_document)
       doc = Document.find_or_create_by_cql(cql)
       library,version = Document.parse_library_and_version(cql)
-      doc = Document.new(library: library,
-                              version: version, data: cql,
-                               dependencies: Document.parse_dependencies(cql))
+
       doc.save
     end
   end
