@@ -9,7 +9,7 @@ require 'test_helper'
     end
 
     test "should be able to retreive a document as cql (default)" do
-      get :show, library: "ChlamydiaScreening_CDS", version: "2"
+      get :show, library: "ChlamydiaScreening_CDS", version: "2", format: 'cql'
       assert_response :success
     end
 
@@ -19,11 +19,13 @@ require 'test_helper'
     end
 
     test "should be able to retreive a document as elm xml" do
-      assert false
+      get :show, library: "ChlamydiaScreening_CDS", version: "2", format: 'xml'
+      assert_response :success
     end
 
     test "should be able to retreive a document as elm json" do
-      assert false
+      get :show, library: "ChlamydiaScreening_CDS", version: "2", format: 'json'
+      assert_response :success
     end
 
     test "should be able to create a document" do

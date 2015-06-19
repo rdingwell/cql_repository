@@ -1,3 +1,5 @@
+require 'java'
+
 module Api
 class DocumentsController < ApplicationController
 
@@ -13,8 +15,17 @@ class DocumentsController < ApplicationController
   param :library, String, :desc => "Document Library", :required => true
   param :version, String, :desc => "Document Version", :required => true
   def show
-    @document = Document.where(library: params[:library], version: params[:version])
-    render json: @document.as_json
+    @document = Document.where(library: params[:library], version: params[:version]).first
+
+    if @document
+      respond_to do |format|
+        format.cql {render text: @document.data}
+        format.xml {render xml: org.cqframework.cql.cql2elm.CqlTranslator.fromText(@document.data).toXml()}
+        format.json {render json: org.cqframework.cql.cql2elm.CqlTranslator.fromText(@document.data).toJson()}
+      end
+    else
+      render :status => :not_found, :text => "Document not found."
+    end
   end
 
   api :POST, "/documents", "Load a document into the respository"
