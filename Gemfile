@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -26,6 +26,7 @@ gem 'mongoid'
 gem 'devise'
 gem 'pry'
 gem 'pry-nav'
+gem 'apipie-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
