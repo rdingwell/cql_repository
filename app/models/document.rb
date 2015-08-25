@@ -2,13 +2,13 @@
 class Document
   include Mongoid::Document
   include Mongoid::Timestamps
- 
+
 
   field :data, type: String
   field :library, type: String
   field :version, type: String
   field :dependencies, type: Hash, default: {}
-  
+
   belongs_to :user
 
   validates_presence_of :data
@@ -34,7 +34,7 @@ class Document
       raise  "Document is used as a dependency for another document"
     end
   end
-  
+
 
   def self.parse_dependencies(cql)
     deps = {}
@@ -75,11 +75,11 @@ class Document
 
 
   def self.find_or_create_by_cql(cql)
-    library,version = parse_library_and_version(cql)
+    library,version = self.parse_library_and_version(cql)
     document = Document.where(library: library, version: version).first
     unless document
-      document = Document.new(library: library, 
-                              version: version, data: cql, 
+      document = Document.new(library: library,
+                              version: version, data: cql,
                               dependencies: parse_dependencies(cql))
       document.save
     end

@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 *.DS_Store
+
+# Ignore contents of vendor folder
+/vendor/*

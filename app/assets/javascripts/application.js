@@ -11,6 +11,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require requirejs/require
+//= require workspace/src/workspace
+//= require workspace/src/widget
+//= require workspace/src/repository
+//= require workspace/src/ace-build/ace
+//= require workspace/src/ace-build/ext-settings_menu
+//= require workspace/src/ace-build/ext-textarea
+//= require workspace/src/ace-build/ext-statusbar
+//= require workspace/src/jquery.ui-contextmenu
+//= require workspace/src/ace-workspace-editor
