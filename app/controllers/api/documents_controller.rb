@@ -3,11 +3,18 @@ require 'java'
 module Api
 class DocumentsController < ApplicationController
 
+  skip_before_filter  :verify_authenticity_token
+
   api :GET, "/documents", "Get a list of documents"
   formats ['json']
   def index
-    @documents = Document.all().as_json
-    render json: @documents
+    @documents = Document.all()
+    resp_hash = {}
+    @documents.each do |document|
+      resp_hash[document.library] ||= []
+      resp_hash[document.library] << document.version
+    end
+    render json: resp_hash
   end
 
   api :GET, "/documents/:library/:version", "Retrieve an individual document"
@@ -32,9 +39,10 @@ class DocumentsController < ApplicationController
   formats ['cql']
   param :file, nil, :desc => "The CQL file", :required => true
   def create
-    cql = File.read(params[:file])
-    library, version = Document.parse_library_and_version(cql)
-    @document = Document.new(library: library, version: version, data: cql, dependencies: Document.parse_dependencies(cql))
+    cql = params[:data]
+    @document = Document.find_or_create_by_cql(cql)
+    @document.data = cql
+    @document.dependencies = Document.parse_dependencies(cql)
     if @document.save
       render status: 201, text: 'Document Imported'
     else
