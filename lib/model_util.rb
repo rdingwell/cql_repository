@@ -1,6 +1,7 @@
 require 'rexml/document'
 require 'rexml/xpath'
-module ModelParser
+module ModelUtil
+  MODELS = {}
   module JavaUtil 
     include_package "javax.xml.bind"
     include_package "org.cqframework.cql.cql2elm"
@@ -21,8 +22,13 @@ module ModelParser
       end
   end
   
+
+
   def self.load_model_info()
+    
     Dir.glob("./model_info/**/*.xml") do |file|
+      xml = REXML::Document.new( File.read(file))
+      MODELS[xml.root.attributes["name"]] = xml 
       modelInfoXML = JavaUtil::File.new(File.absolute_path(file))
       modelInfo = JavaUtil::JAXB.unmarshal(modelInfoXML, JavaUtil::ModelInfo.java_class);
       modelId = JavaUtil::VersionedIdentifier.new().withId(modelInfo.getName()).withVersion(modelInfo.getVersion());

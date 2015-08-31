@@ -1,4 +1,4 @@
 require 'java'
-require 'model_parser'
-ModelParser.load_model_info
-ModelParser::JavaUtil::LibrarySourceLoader.registerProvider(ModelParser::SourceLoader.new)
+require 'model_util'
+ModelUtil.load_model_info
+ModelUtil::JavaUtil::LibrarySourceLoader.registerProvider(ModelUtil::SourceLoader.new)
