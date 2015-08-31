@@ -1,6 +1,6 @@
 {
   "name": "cql_repository",
   "dependencies": {
-    "workspace": "git@gitlab.mitre.org:everest/workspace.git",
+    "workspace": "git@gitlab.mitre.org:everest/workspace.git"
   }
 }
