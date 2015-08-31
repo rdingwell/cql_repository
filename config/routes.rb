@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
+    resources :models
     resources :documents
     get 'documents/:library/:version' => 'documents#show'
     post 'documents/:library/:version' => 'documents#update'
