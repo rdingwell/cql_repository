@@ -14,10 +14,10 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
+//= require jstree
 //= require_tree .
 //= require requirejs/require
 //= require workspace/src/workspace
-//= require workspace/src/widget
 //= require workspace/src/repository
 //= require workspace/src/ace-build/ace
 //= require workspace/src/ace-build/ext-settings_menu
