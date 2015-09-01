@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :documents
-    get 'documents/:library/:version' => 'documents#show'
-    post 'documents/:library/:version' => 'documents#update'
+    get 'documents/:id/:version' => 'documents#show'
+    post 'documents/:id/:version' => 'documents#update'
   end
   devise_for :users
   root :to => 'home#index'

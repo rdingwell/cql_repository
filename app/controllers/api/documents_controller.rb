@@ -17,12 +17,12 @@ class DocumentsController < ApplicationController
     render json: resp_hash
   end
 
-  api :GET, "/documents/:library/:version", "Retrieve an individual document"
+  api :GET, "/documents/:id(/:version)", "Retrieve an individual document"
   formats ['json']
-  param :library, String, :desc => "Document Library", :required => true
-  param :version, String, :desc => "Document Version", :required => true
+  param :id, String, :desc => "Document Library", :required => true
+  param :version, String, :desc => "Document Version", :required => false
   def show
-    @document = Document.where(library: params[:library], version: params[:version]).first
+    @document = Document.where(library: params[:id], version: params[:version]).first
 
     if @document
       respond_to do |format|
@@ -50,14 +50,14 @@ class DocumentsController < ApplicationController
     end
   end
 
-  api :POST, "/documents/:library/:version", "Update a document"
+  api :POST, "/documents/:id/:version", "Update a document"
   formats ['json']
-  param :library, String, :desc => "Document Library", :required => true
+  param :id, String, :desc => "Document Library", :required => true
   param :version, String, :desc => "Document Version", :required => true
   param :file, nil, :desc => "The updated CQL file", :required => true
   def update
     cql = File.read(params[:file])
-    @document = Document.where(library: params[:library], version: params[:version]).first
+    @document = Document.where(library: params[:id], version: params[:version]).first
     @document.data = cql
     @document.dependencies = Document.parse_dependencies(cql)
     if @document.save
