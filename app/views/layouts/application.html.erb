@@ -26,13 +26,28 @@
             treejson.push({"id": key, "parent": "#", "text": key})
             for (var i = 0; i < data[key].length; i++){
               if(data[key][i]) {
-                treejson.push({"id": key+data[key], "parent": key, "text": data[key][i]})
+                treejson.push({"id": key+"/"+data[key], "parent": key, "text": data[key][i]})
               }
             }
           }
 
           $('#jstree').jstree({"core": {
               "data": treejson
+            }
+          }).bind("select_node.jstree", function(e, data) {
+            filename = data.selected[0]
+            if(data.node.children.length == 0){
+              $.get("/api/documents/" + filename).then( function (resp) {
+                var tabs = workspace.tabs.tabs("instance").tabs
+                for(var i = 0; i < tabs.length; i++) {
+                  if($(tabs[i]).data().editor.name == filename) {
+                    workspace.tabs.tabs("option", "active", i);
+                    return;
+                  }
+                }
+                window.ace.config.set("basePath", "assets/workspace/src/ace-build")
+                workspace.open(data.selected[0], resp, AceWorkspaceEditor,{ace:window.ace,mode:"ace/mode/cql"})
+              });
             }
           });
         });
