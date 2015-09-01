@@ -1,10 +1,98 @@
-<button id="addTab" >Add Tab</button>
-<div class="container">
+<div id="header">
+	<div class="logo"><img src="assets/workspace/stylesheets/customization/Images/Everest_Logo.png"></div>
+		<div class="menuContainer">
+		<ul id="menu">
+			<li>File
+			<ul>
+			<li class="ui-state-disabled">File Sub Menu 1</li>
+			<li>File Sub Menu 2</li>
+			<div class="ui-menu-divider"></div>
+			<li><span class="ui-icon ui-icon-star"></span>File Sub Menu 3</li>
+    		</ul>
+			</li>
+			<li>Edit
+			<ul>
+			<li class="ui-state-disabled">Edit Sub Menu 1</li>
+			<li>Edit Sub Menu 2</li>
+			<li>Edit Sub Menu 3</li>
+    		</ul>
+			</li>
+			<li>Find
+			<ul>
+			<li>Find Sub Menu 1</li>
+			<li>Find Sub Menu 2</li>
+			<li>Find Sub Menu 3</li>
+    		</ul>
+			</li>
+			<li>View
+			<ul>
+			<li class="ui-state-disabled">View Sub Menu 1</li>
+			<li>View Sub Menu 2</li>
+			<li>View Sub Menu 3</li>
+    		</ul>
+			</li>
+			<li>Preferences
+			<ul>
+				<li class="ui-state-disabled">Pref Menu Item 1</li>
+				<li>Pref Menu Item 2</li>
+				<li>Pref Menu Item 3</li>
+	    	</ul>
+			</li>
+			<li>Help
+			<ul>
+				<li class="ui-state-disabled">Pref Menu Item 1</li>
+				<li ><span class="ui-icon ui-icon-print"></span>Pref Menu Item 2</li>
+				<li>Pref Menu Item 3</li>
+	    	</ul>
+			</li>
+		</div>
+	<div class="login">ehathaway@mitre.org</div>
 
- <div class="row">
-    <div id="workspace" class="col-sm-6 " >
 
-    </div>
 </div>
 
+<div class="actionBar">
+	<input id="mybutton" type="button" value="Slide" class="ui-state-default ui-corner-all ui-button-icon-only">
+	<button id="addTab" class="icon">Add Tab</button>
+</div>
+
+
+
+<!-- END HEADER -->
+
+  <div class="ace-container" >
+	<!-- START TREE PANEL -->
+<div id="jstree" class="treepanel ui-widget-content">
+
+</div>
+<!-- END TREE PANEL -->
+
+
+
+<!-- START CONTENT AREA -->
+
+
+   <div class="row">
+
+	<div id="workspace" ></div>
+  </div>
+
+</div>
+
+
+
+
+<script>
+	//dom ready handler so that the script is executed after the dom is loaded
+jQuery(function () {
+    //register the click handler to an element with id mybutton
+    $('#mybutton').click(function () {
+        $("#jstree").toggle("slide");
+    });
+})
+</script>
+<!--
+<div id="footer" style="position: fixed">
+Copyright © W3Schools.com
+</div>-->
 </div>
