@@ -6,11 +6,13 @@ module Api
     end
 
     def show
-      model = ModelUtil::MODELS[params[:id]]
+      mid = params[:id]
+      mid.gsub!(".json","")
+      model = ModelUtil::MODELS[mid]
       if model
         render json: ModelUtil.convert_to_json(model)
       else
-        render status: 404
+        render status: 404, text: "Could not find model #{mid}"
       end
     end
 

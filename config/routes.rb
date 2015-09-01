@@ -5,8 +5,13 @@ Rails.application.routes.draw do
     get 'documents/:id/:version' => 'documents#show'
     post 'documents/:id/:version' => 'documents#update'
   end
+  
   devise_for :users
   root :to => 'home#index'
+  get 'models' => 'api/models#index'
+  get 'models/:id(.:format)' => 'api/models#show'
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
