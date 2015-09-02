@@ -13,10 +13,12 @@
       $(document).ready(function() {
         $( "#workspace" ).workspace();
         workspace = $( "#workspace" ).workspace("instance");
-
+        setTimeout(function(){
+           window.ace.config.set("basePath", "assets/workspace/src/ace-build")
+         },1000)
         $("#addTab").click(function(){
           //require("ace/ext/language_tools");
-          window.ace.config.set("basePath", "assets/workspace/src/ace-build")
+         
           workspace.open("","",AceWorkspaceEditor,{ace:window.ace,mode:"ace/mode/cql"})
         });
 
@@ -55,20 +57,7 @@
       );
 
   </script>
-  <script>
-    $(function() {
-      $( "#menu" ).menu({
-    position: {
-      my:'left+10 bottom-15',
-      at:'left center'
-      }
-    });
-    });
-  </script>
 
-  <script>
-
-  </script>
 </head>
 <body>
 

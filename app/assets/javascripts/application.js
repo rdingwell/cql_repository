@@ -25,3 +25,4 @@
 //= require workspace/src/ace-build/ext-statusbar
 //= require workspace/src/jquery.ui-contextmenu
 //= require workspace/src/ace-workspace-editor
+//= require workspace/src/ace-build/mode-cql
