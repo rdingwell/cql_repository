@@ -4,15 +4,15 @@
         <xs:sequence>
             <xs:element name="name" type="xs:string" minOccurs="1"/>
             <xs:element name="service" type="Service" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="training" type="Training" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="character" type="xs:string" minOccurs="0"/>
+            <xs:element name="separationReason" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Service">
         <xs:sequence>
             <xs:element name="EOD" type="xs:dateTime" minOccurs="1"/>
             <xs:element name="RAD" type="xs:dateTime" minOccurs="0"/>
-            <xs:element name="character" type="xs:string" minOccurs="0"/>
-            <xs:element name="separationReason" type="xs:string" minOccurs="0"/>
-            <xs:element name="training" type="Training" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Training">
