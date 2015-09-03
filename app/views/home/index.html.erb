@@ -1,169 +1,90 @@
+
 <div id="header">
-	<div class="logo"><img src="assets/workspace/stylesheets/customization/Images/Everest_Logo.png"></div>
-			<div class="menuContainer">
-		<ul id="menu">
-			<li>File
-			<ul>
-			   <li id="new">New</li>
-			   <li id="close">Close</li>
+  <div class="logo"><img src="stylesheets/customization/Images/Everest_Logo.png"></div>
+    <div class="menuContainer">
+    <ul id="menu">
+      <li>File
+      <ul>
+         <li id="new">New</li>
+         <li id="close">Close</li>
          <li id="closeAll">Close All</li>
          <li id="closeOthers">Close Others</li>
-			   <div class="ui-menu-divider"></div>
-			   <li id="print">Print</li>
-    	 </ul>	
-		  </li>
-			
+         <div class="ui-menu-divider"></div>
+         <li id="print">Print</li>
+       </ul>  
+      </li>
+      
       <li>Edit
-		  	<ul>
-			   <li class="ui-state-disabled">Edit Sub Menu 1</li>
-			   <li>Edit Sub Menu 2</li>
-			   <li>Edit Sub Menu 3</li>
-    		</ul>	
-			</li>
-			<li>Find
-			   <ul>
-			     <li>Find Sub Menu 1</li>
-			     <li>Find Sub Menu 2</li>
-			     <li>Find Sub Menu 3</li>
-    		</ul>
-			</li>
-			<li>View
-		    <ul>
-			     <li class="ui-state-disabled">View Sub Menu 1</li>
-			     <li>View Sub Menu 2</li>
-			     <li>View Sub Menu 3</li>
-    		</ul>
-			</li>
-			<li>Preferences
-			   <ul>
-				    <li class="ui-state-disabled">Pref Menu Item 1</li>
-				    <li>Pref Menu Item 2</li>
-				    <li>Pref Menu Item 3</li>
-	    	</ul>
-			</li>
-			<li>Help
-			   <ul>
-				    <li class="ui-state-disabled">Pref Menu Item 1</li>
-				    <li ><span class="ui-icon ui-icon-print"></span>Pref Menu Item 2</li>
-				    <li>Pref Menu Item 3</li>
-	    	  </ul>
-			</li>
+        <ul>
+         <li class="ui-state-disabled">Edit Sub Menu 1</li>
+         <li>Edit Sub Menu 2</li>
+         <li>Edit Sub Menu 3</li>
+        </ul> 
+      </li>
+      <li>Find
+         <ul>
+           <li>Find Sub Menu 1</li>
+           <li>Find Sub Menu 2</li>
+           <li>Find Sub Menu 3</li>
+        </ul>
+      </li>
+      <li>View
+        <ul>
+           <li class="ui-state-disabled">View Sub Menu 1</li>
+           <li>View Sub Menu 2</li>
+           <li>View Sub Menu 3</li>
+        </ul>
+      </li>
+      <li>Preferences
+         <ul>
+            <li class="ui-state-disabled">Pref Menu Item 1</li>
+            <li>Pref Menu Item 2</li>
+            <li>Pref Menu Item 3</li>
+        </ul>
+      </li>
+      <li>Help
+         <ul>
+            <li class="ui-state-disabled">Pref Menu Item 1</li>
+            <li ><span class="ui-icon ui-icon-print"></span>Pref Menu Item 2</li>
+            <li>Pref Menu Item 3</li>
+          </ul>
+      </li>
      </ul>
-		</div>
-	<div class="login">ehathaway@mitre.org</div>
-
+    </div>
+  <div class="login">ehathaway@mitre.org</div>
 
 </div>
-
-<div class="actionBar">
-	<input id="mybutton" type="button" value="Slide" class="ui-state-default ui-corner-all ui-button-icon-only">
-	<button id="addTab" class="icon">Add Tab</button>
-</div>
-
-
-
 <!-- END HEADER -->
 
-  <div class="ace-container" >
-	<!-- START TREE PANEL -->
-<div id="jstree" class="treepanel ui-widget-content">
+<div class="ace-container" >
 
+<!-- START TREE PANEL --> 
+<div id="jstree" class="treepanel">
+add tree selector
 </div>
 <!-- END TREE PANEL -->
-
 
 
 <!-- START CONTENT AREA -->
 
 
-   <div class="row">
-
-	<div id="workspace" ></div>
+<div class="ace">
+     <div class="actionBar">
+  <input id="mybutton" type="button" value="Slide" class="ui-state-default ui-corner-all ui-button-icon-only ui-icon  ui-icon-arrowthickstop-1-w" style="cursor: pointer">
+  <button id="addTab" class="icon">Add Tab</button>
   </div>
 
-</div>
+  <div id="workspace"></div>
+  </div>  
 
+  </div>  
+  
 
-  <script>
-
-
-    var menuCommands = {}
-    menuCommands["new"] = function(){
-        workspace.open("","",AceWorkspaceEditor,{ace:window.ace,mode:"ace/mode/cql"})
-    }
-
-    menuCommands["close"] = function(){
-       var active =  workspace.activeEditor();
-       if(active){
-        active.close();
-       }
-    }
-
-    menuCommands["closeAll"] = function(){
-       workspace.closeAll();
-    }
-
-    menuCommands["closeOthers"] = function(){
-       var active =  workspace.activeEditor();
-       if(active){
-         workspace.closeOthers(active)
-       }
-    }
-
-    menuCommands["print"] = function(){
-      var active =  workspace.activeEditor();
-      if(active){
-        var editor = active.$aceEditor
-        require("ace/config").loadModule("ace/ext/static_highlight", function(m) {
-        var result = m.renderSync(
-            editor.getValue(), editor.session.getMode(), editor.renderer.theme
-        )
-        document.body.style.display="none"
-        var d = document.createElement("div")
-        d.innerHTML=result.html
-        document.documentElement.appendChild(d)
-        require("ace/lib/dom").importCssString(result.css)
-
-        setTimeout(function() {window.print()}, 10)
-
-        window.addEventListener("focus", function restore() {
-           window.removeEventListener("focus", restore, false)
-          d.parentNode.removeChild(d)
-          document.body.style.display= ""
-          editor.resize(true)
-        }, false)
-       })
-      }
-     }
-
-
-    $(function() {
-      $( "#menu" ).menu({
-        position: {
-          my:'left+10 bottom-15',
-          at:'left center'
-         },
-        select: function(event,ui){
-          var command = menuCommands[ui.item[0].id]
-          if(command){
-            command();
-          }
-        }
-      });    
-    });
-  </script>
 
 <script>
-	//dom ready handler so that the script is executed after the dom is loaded
-jQuery(function () {
-    //register the click handler to an element with id mybutton
-    $('#mybutton').click(function () {
-        $("#jstree").toggle("slide");
-    });
-})
-</script>
-<!--
-<div id="footer" style="position: fixed">
-Copyright © W3Schools.com
-</div>-->
+
+</script> 
+<div id="footer" class="ui-widget-content">
+status bar
+</div>
 </div>

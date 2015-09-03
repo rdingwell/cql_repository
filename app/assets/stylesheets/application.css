@@ -11,7 +11,6 @@
  * file per style scope.
  *
  *= require workspace/stylesheets/jquery-ui-theme
- *= require bootstrap/dist/css/bootstrap
  *= require workspace/stylesheets/ace-workspace
  *= require workspace/stylesheets/customization/all
  *= require_tree .
