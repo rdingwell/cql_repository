@@ -10,6 +10,13 @@ module ModelUtil
     include_class "java.io.File"
   end
 
+
+
+   T = JavaUtil::ModelInfoLoader
+   def T.getModelInfoProvider(v)
+    puts v
+    puts "nope"
+  end
   class SourceLoader
       # this needs to return a Java.io.InputStream so 
       def getLibrarySource(vi)
@@ -30,10 +37,12 @@ module ModelUtil
       xml = REXML::Document.new( File.read(file))
       MODELS[xml.root.attributes["name"]] = xml 
       modelInfoXML = JavaUtil::File.new(File.absolute_path(file))
-      modelInfo = JavaUtil::JAXB.unmarshal(modelInfoXML, JavaUtil::ModelInfo.java_class);
-      modelId = JavaUtil::VersionedIdentifier.new().withId(modelInfo.getName()).withVersion(modelInfo.getVersion());
-      modelProvider = lambda {return modelInfo}
-      JavaUtil::ModelInfoLoader.registerModelInfoProvider(modelId, modelProvider);
+      JavaUtil::CqlTranslator.loadModelInfo(modelInfoXML);
+      # modelInfo = JavaUtil::JAXB.unmarshal(modelInfoXML, JavaUtil::ModelInfo.java_class);
+      # puts "loading #{modelInfo.getName()} #{modelInfo.getVersion()}"
+      # modelId = JavaUtil::VersionedIdentifier.new().withId(modelInfo.getName()).withVersion(modelInfo.getVersion());
+      # modelProvider = lambda {return modelInfo}
+      # JavaUtil::ModelInfoLoader.registerModelInfoProvider(modelId, modelProvider);
     end
    
    end

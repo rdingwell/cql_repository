@@ -13,6 +13,7 @@
       $(document).ready(function() {
         $( "#workspace" ).workspace();
         workspace = $( "#workspace" ).workspace("instance");
+         workspace.delegate = new Repository("http://localhost:3001/api/documents");
         setTimeout(function(){
            window.ace.config.set("basePath", "assets/workspace/src/ace-build")
          },1000)

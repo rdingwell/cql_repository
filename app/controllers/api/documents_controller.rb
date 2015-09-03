@@ -1,5 +1,5 @@
 require 'java'
-
+require 'model_util'
 module Api
 class DocumentsController < ApplicationController
 
