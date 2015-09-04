@@ -17,7 +17,7 @@
             treejson.push({"id": key, "parent": "#", "text": key})
             for (var i = 0; i < data[key].length; i++){
               if(data[key][i]) {
-                treejson.push({"id": key+"/"+data[key], "parent": key, "text": data[key][i]})
+                treejson.push({"id": key+"/"+data[key][i], "parent": key, "text": data[key][i]})
               }
             }
           }
@@ -88,6 +88,12 @@
        var active =  workspace.activeEditor();
        if(active){
          workspace.closeOthers(active)
+       }
+    }
+    menuCommands["refresh"] = function(){
+       var active =  workspace.activeEditor();
+       if(active){
+         active.$aceSession.document.setValue(active.$originalContent)
        }
     }
 
