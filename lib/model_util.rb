@@ -10,13 +10,6 @@ module ModelUtil
     include_class "java.io.File"
   end
 
-
-
-   T = JavaUtil::ModelInfoLoader
-   def T.getModelInfoProvider(v)
-    puts v
-    puts "nope"
-  end
   class SourceLoader
       # this needs to return a Java.io.InputStream so 
       def getLibrarySource(vi)
